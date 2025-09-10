@@ -3,13 +3,9 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
-  flex-direction: column;
 }
 
 body {
@@ -33,7 +29,7 @@ body {
 }
 
 .profile-pic {
-  width: 22vw;
+  width: clamp(100px, 22vw, 160px);
   max-width: 160px;
   height: auto;
   aspect-ratio: 1/1;
@@ -174,6 +170,60 @@ h2 {
   }
 }
 
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-wrapper {
+  position: absolute;
+  bottom: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.down-arrow {
+  width: clamp(30px, 8vw, 60px);
+  height: clamp(30px, 8vw, 60px);
+  opacity: 0.9;
+  animation: bounce 1.8s ease-in-out infinite;
+  filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.95));
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+
+  40% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+}
+
+.next-section {
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+
 /* ------------------ MEDIA QUERIES ------------------ */
 
 /* Small phones */
@@ -190,6 +240,11 @@ h2 {
   h2 {
     font-size: 1rem;
   }
+
+  .down-arrow {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* Tablets */
@@ -205,6 +260,11 @@ h2 {
   h2 {
     font-size: 1.2rem;
   }
+
+  .down-arrow {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 /* Large screens */
@@ -219,5 +279,10 @@ h2 {
 
   h2 {
     font-size: 1.6rem;
+  }
+
+  .down-arrow {
+    width: 70px;
+    height: 70px;
   }
 }

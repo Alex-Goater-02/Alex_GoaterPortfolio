@@ -3,28 +3,27 @@ import { AnimatePresence, motion } from "framer-motion";
 import Typed from "typed.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 import LoadingScreen from "./LoadingScreen";
+import { ArrowDown } from "./icons/ArrowDown";
 import "./index.css";
 
 function App() {
   const typedRef = useRef(null);
+  const nextSectionRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-  // Show loader for 2 seconds (adjust time in ms)
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Initialize AOS and Typed after loader finishes
+
   useEffect(() => {
     if (!loading) {
-      AOS.init({
-        duration: 1200,
-        once: true,
-      });
+      AOS.init({ duration: 1200, once: true });
 
-      // small micro-delay to ensure DOM has mounted
       const t = setTimeout(() => {
         if (typedRef.current) {
           const typed = new Typed(typedRef.current, {
@@ -40,7 +39,7 @@ function App() {
             backDelay: 2000,
             loop: true,
           });
-          // cleanup
+
           return () => typed.destroy();
         }
       }, 50);
@@ -49,9 +48,15 @@ function App() {
     }
   }, [loading]);
 
+
+  const scrollToNextSection = () => {
+    if (nextSectionRef.current) {
+      nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
-      {/* Loader overlay (full screen) */}
       <AnimatePresence>
         {loading && (
           <motion.div
@@ -77,7 +82,6 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Main site (mounts after loader) */}
       {!loading && (
         <motion.div
           className="App"
@@ -85,7 +89,8 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9 }}
         >
-          <div data-aos="fade-down">
+
+          <div className="hero-section" data-aos="fade-down">
             <img
               src="/images/alex_goater.jpeg"
               alt="Alex Goater"
@@ -95,6 +100,15 @@ function App() {
             <h2>
               <span ref={typedRef}></span>
             </h2>
+
+            <div className="arrow-wrapper" onClick={scrollToNextSection}>
+              <ArrowDown className="down-arrow" />
+            </div>
+          </div>
+
+          <div ref={nextSectionRef} className="next-section">
+            <h2>-</h2>
+            <p>-</p>
           </div>
         </motion.div>
       )}

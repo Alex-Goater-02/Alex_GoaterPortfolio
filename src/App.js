@@ -1,53 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import Typed from "typed.js";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-import LoadingScreen from "./LoadingScreen";
 import { ArrowDown } from "./icons/ArrowDown";
 import "./index.css";
 
 function App() {
   const typedRef = useRef(null);
   const nextSectionRef = useRef(null);
-  const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (typedRef.current) {
+      const typed = new Typed(typedRef.current, {
+        strings: [
+          "Full Stack Developer",
+          "Graduate Web Developer",
+          "Junior Web Developer",
+          "Problem Solver",
+          "Tech Enthusiast",
+        ],
+        typeSpeed: 50,
+        backSpeed: 25,
+        backDelay: 2000,
+        loop: true,
+      });
 
-
-  useEffect(() => {
-    if (!loading) {
-      AOS.init({ duration: 1200, once: true });
-
-      const t = setTimeout(() => {
-        if (typedRef.current) {
-          const typed = new Typed(typedRef.current, {
-            strings: [
-              "Full Stack Developer",
-              "Graduate Web Developer",
-              "Junior Web Developer",
-              "Problem Solver",
-              "Tech Enthusiast",
-            ],
-            typeSpeed: 50,
-            backSpeed: 25,
-            backDelay: 2000,
-            loop: true,
-          });
-
-          return () => typed.destroy();
-        }
-      }, 50);
-
-      return () => clearTimeout(t);
+      return () => typed.destroy();
     }
-  }, [loading]);
-
+  }, []);
 
   const scrollToNextSection = () => {
     if (nextSectionRef.current) {
@@ -56,63 +36,119 @@ function App() {
   };
 
   return (
-    <>
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            key="loaderOverlay"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+    <motion.div
+      className="App"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.9 }}
+    >
+      <motion.div
+        className="hero-section"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <img
+          src="/images/alex_goater.jpeg"
+          alt="Alex Goater"
+          className="profile-pic"
+        />
+        <h1>- Alex Goater -</h1>
+        <h2>
+          <span ref={typedRef}></span>
+        </h2>
+        <div className="arrow-wrapper" onClick={scrollToNextSection}>
+          <ArrowDown className="down-arrow" />
+        </div>
+      </motion.div>
+
+      <div ref={nextSectionRef} className="next-section">
+        <div className="content">
+          <motion.h3
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#000",
-              zIndex: 9999,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            viewport={{ once: true }}
           >
-            <LoadingScreen />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            About Me
+          </motion.h3>
 
-      {!loading && (
-        <motion.div
-          className="App"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9 }}
-        >
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            I'm Alex Goater, a First Class BSc (Hons) Computing Information
+            Systems Management graduate from the University of Greenwich,
+            passionate about developing modern, scalable web applications.
+          </motion.p>
 
-          <div className="hero-section" data-aos="fade-down">
-            <img
-              src="/images/alex_goater.jpeg"
-              alt="Alex Goater"
-              className="profile-pic"
-            />
-            <h1>- Alex Goater -</h1>
-            <h2>
-              <span ref={typedRef}></span>
-            </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            My passion for coding began at 12, when I studied and experimented
+            with web development to build my first competitive gaming league
+            website, which I went on to sell after accumulating notable traffic
+            with over 1000 sign-ups within a week. Since then, I've created
+            responsive, user-friendly applications through both university
+            coursework and freelance projects, ensuring compliance with WCAG
+            accessibility standards and GDPR guidelines.
+          </motion.p>
 
-            <div className="arrow-wrapper" onClick={scrollToNextSection}>
-              <ArrowDown className="down-arrow" />
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            I'm eager to begin my career as a Junior/Graduate Full Stack
+            Developer, where I can contribute to innovative digital solutions,
+            collaborate in agile teams and continue to expand my technical
+            expertise in a professional environment.
+          </motion.p>
+
+          <div className="skills-section">
+            <motion.h3
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Skills
+            </motion.h3>
+            <div className="skills-grid">
+              {[
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React",
+                "Vue",
+                "Node.js",
+                "PHP",
+                "SQL",
+                "Git/GitHub",
+                "SEO",
+              ].map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  className="skill-box"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  {skill}
+                </motion.div>
+              ))}
             </div>
           </div>
-
-          <div ref={nextSectionRef} className="next-section">
-            <h2>-</h2>
-            <p>-</p>
-          </div>
-        </motion.div>
-      )}
-    </>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 

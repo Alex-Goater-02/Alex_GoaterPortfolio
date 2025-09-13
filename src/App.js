@@ -49,7 +49,7 @@ function App() {
         transition={{ duration: 1 }}
       >
         <img
-          src="/images/alex_goater.jpeg"
+          src="/images/alex_goater.jpeg?v=1"
           alt="Alex Goater"
           className="profile-pic"
         />

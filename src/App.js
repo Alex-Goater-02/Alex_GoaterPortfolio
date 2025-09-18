@@ -94,10 +94,13 @@ function App() {
         />
         <h1>- Alex Goater -</h1>
         <h2>
-          <span ref={typedRef} aria-live="polite">
-            Full Stack Developer
-          </span>
+          <span
+            ref={typedRef}
+            aria-live="polite"
+            aria-label="Full Stack Developer, Graduate Web Developer, Junior Web Developer, Problem Solver, Tech Enthusiast"
+          ></span>
         </h2>
+
         <div className="arrow-wrapper" onClick={scrollToNextSection}>
           <ArrowDown className="down-arrow" />
         </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Typed from "typed.js";
-
 import { ArrowDown } from "./icons/ArrowDown";
 import "./index.css";
 
 function App() {
   const typedRef = useRef(null);
   const nextSectionRef = useRef(null);
+  const projectsSectionRef = useRef(null);
 
   useEffect(() => {
     if (typedRef.current) {
@@ -24,7 +24,6 @@ function App() {
         backDelay: 2000,
         loop: true,
       });
-
       return () => typed.destroy();
     }
   }, []);
@@ -35,6 +34,45 @@ function App() {
     }
   };
 
+  const projects = [
+    {
+      title: "Project One",
+      image: "/images/project1.png",
+      link: "https://goataria.co.uk/",
+      description: "A modern responsive web application",
+    },
+    {
+      title: "Project Two",
+      image: "/images/project2.png",
+      link: "https://goataria.co.uk/",
+      description: "Interactive user interface project",
+    },
+    {
+      title: "Project Three",
+      image: "/images/project3.png",
+      link: "https://goataria.co.uk/",
+      description: "E-commerce platform development",
+    },
+    {
+      title: "Project Four",
+      image: "/images/project4.png",
+      link: "https://goataria.co.uk/",
+      description: "Portfolio website showcasing projects",
+    },
+    {
+      title: "Project Five",
+      image: "/images/project5.png",
+      link: "https://goataria.co.uk/",
+      description: "Web application with backend integration",
+    },
+    {
+      title: "Project Six",
+      image: "/images/project6.png",
+      link: "https://goataria.co.uk/",
+      description: "Custom CMS for content management",
+    },
+  ];
+
   return (
     <motion.div
       className="App"
@@ -42,15 +80,16 @@ function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9 }}
     >
-      <motion.div
+      <motion.section
         className="hero-section"
+        aria-label="Hero Section"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
         <img
           src="/images/alex_goater.jpeg?v=1"
-          alt="Alex Goater"
+          alt="Alex Goater profile picture"
           className="profile-pic"
         />
         <h1>- Alex Goater -</h1>
@@ -60,9 +99,13 @@ function App() {
         <div className="arrow-wrapper" onClick={scrollToNextSection}>
           <ArrowDown className="down-arrow" />
         </div>
-      </motion.div>
+      </motion.section>
 
-      <div ref={nextSectionRef} className="next-section">
+      <section
+        ref={nextSectionRef}
+        className="next-section"
+        aria-label="About Me Section"
+      >
         <div className="content">
           <motion.h3
             initial={{ opacity: 0, y: 40 }}
@@ -90,13 +133,11 @@ function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            My passion for coding began at 12, when I studied and experimented
-            with web development to build my first competitive gaming league
-            website, which I went on to sell after accumulating notable traffic
-            with over 1000 sign-ups within a week. Since then, I've created
-            responsive, user-friendly applications through both university
-            coursework and freelance projects, ensuring compliance with WCAG
-            accessibility standards and GDPR guidelines.
+            I started coding at 12, building my first competitive gaming league
+            website, which I later sold after attracting over 1,000 sign-ups in
+            a week. Since then, I’ve created responsive, user-friendly
+            applications through university projects and freelance work,
+            following accessibility and GDPR standards.
           </motion.p>
 
           <motion.p
@@ -105,10 +146,9 @@ function App() {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            I'm eager to begin my career as a Junior/Graduate Full Stack
-            Developer, where I can contribute to innovative digital solutions,
-            collaborate in agile teams and continue to expand my technical
-            expertise in a professional environment.
+            I’m eager to start my career as a Junior/Graduate Full Stack
+            Developer, contributing to innovative digital solutions and growing
+            my technical expertise in professional environments.
           </motion.p>
 
           <div className="skills-section">
@@ -140,6 +180,7 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   viewport={{ once: true }}
+                  aria-label={`Skill: ${skill}`}
                 >
                   {skill}
                 </motion.div>
@@ -147,7 +188,53 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section
+        ref={projectsSectionRef}
+        className="projects-section"
+        aria-label="Projects Section"
+      >
+        <div className="content">
+          <motion.h3
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Projects
+          </motion.h3>
+
+          <div className="projects-rows">
+            {projects.map((project, index) => {
+              const rowIndex = Math.floor(index / 3);
+              const fromLeft = rowIndex % 2 === 0;
+              const initialX = fromLeft ? -80 : 80;
+
+              return (
+                <motion.a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-card"
+                  initial={{ opacity: 0, x: initialX }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: (index % 3) * 0.2 }}
+                  viewport={{ once: true }}
+                  aria-label={`Project: ${project.title}. ${project.description}. Click to view project.`}
+                >
+                  <img
+                    src={project.image}
+                    alt={`${project.title} - ${project.description}`}
+                  />
+                  <h4>{project.title}</h4>
+                </motion.a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </motion.div>
   );
 }

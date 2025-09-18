@@ -29,33 +29,30 @@ body {
 }
 
 .profile-pic {
-  width: clamp(100px, 22vw, 160px);
-  max-width: 160px;
+  width: clamp(6.25rem, 22vw, 10rem);
+  max-width: 10rem;
   height: auto;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  border: 0.25rem solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0.375rem 1.125rem rgba(0, 0, 0, 0.5);
   object-fit: cover;
   object-position: 50% 25%;
-  margin-bottom: 1.2rem;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: high-quality;
+  margin-bottom: 1.25rem;
   animation: pulse 3s infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0.9375rem rgba(255, 255, 255, 0.6);
   }
 
   50% {
-    box-shadow: 0 0 35px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 2.1875rem rgba(255, 255, 255, 0.9);
   }
 
   100% {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0.9375rem rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -64,9 +61,10 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
   color: white;
-  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  text-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.6);
   margin: 0 0 1rem 0;
-  letter-spacing: 3px;
+  letter-spacing: 0.1875rem;
 }
 
 h2 {
@@ -74,8 +72,9 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   color: white;
-  letter-spacing: 2px;
-  text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.125rem;
+  text-align: center;
+  text-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
@@ -84,8 +83,8 @@ h3 {
   font-weight: 600;
   text-transform: uppercase;
   color: black;
-  letter-spacing: 2px;
-  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.125rem;
+  text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.3);
   margin: 0 0 1rem 0;
   position: relative;
   display: inline-block;
@@ -94,13 +93,13 @@ h3 {
 h3::after {
   content: "";
   display: block;
-  width: 50px;
-  height: 3px;
+  width: 3.125rem;
+  height: 0.1875rem;
   background: linear-gradient(-45deg, #ff512f, #dd2476, #24c6dc, #514a9d);
   background-size: 400% 400%;
   animation: gradient-line 12s ease infinite;
-  margin-top: 8px;
-  border-radius: 2px;
+  margin-top: 0.5rem;
+  border-radius: 0.125rem;
 }
 
 @keyframes gradient-line {
@@ -121,7 +120,7 @@ h3::after {
   font-weight: bold;
   font-size: 1.4rem;
   color: #ffffff;
-  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.4);
 }
 
 .hero-section {
@@ -131,21 +130,22 @@ h3::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 }
 
 .arrow-wrapper {
   position: absolute;
-  bottom: 8rem;
+  bottom: 8vh;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .down-arrow {
-  width: clamp(30px, 8vw, 60px);
-  height: clamp(30px, 8vw, 60px);
+  width: clamp(2rem, 8vw, 3.75rem);
+  height: clamp(2rem, 8vw, 3.75rem);
   opacity: 0.9;
   animation: bounce 1.8s ease-in-out infinite;
-  filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.95));
+  filter: drop-shadow(0 0.25rem 0.625rem rgba(255, 255, 255, 0.95));
   cursor: pointer;
 }
 
@@ -156,7 +156,7 @@ h3::after {
   }
 
   40% {
-    transform: translateY(20px);
+    transform: translateY(1.25rem);
     opacity: 1;
   }
 
@@ -166,15 +166,20 @@ h3::after {
   }
 }
 
-.next-section {
+.next-section,
+.projects-section {
   width: 100%;
-  background: white;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(0.625rem);
   padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem);
-  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.next-section {
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -197,7 +202,7 @@ h3::after {
 
 .skills-section {
   margin-top: 4.5rem;
-  text-align: left;
+  text-align: center;
 }
 
 .skills-section h3 {
@@ -208,7 +213,7 @@ h3::after {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
   max-width: 60rem;
@@ -217,20 +222,19 @@ h3::after {
 }
 
 .skill-box {
-  background: #f5f5f5;
-  border-radius: 12px;
+  background: white;
+  border-radius: 0.75rem;
   padding: 1rem;
   font-size: 1rem;
   font-weight: 600;
   color: #333;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.12);
 }
 
 .skill-box:hover {
@@ -238,18 +242,119 @@ h3::after {
   background-size: 400% 400%;
   animation: gradient 6s ease infinite;
   color: white;
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.5rem 1.125rem rgba(0, 0, 0, 0.2);
+}
+
+.projects-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.projects-section .content {
+  max-width: 60rem;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.projects-rows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  max-width: 20rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card img {
+  width: 100%;
+  height: 14rem;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card h4 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transition: opacity 0.4s ease, color 0.4s ease, background 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.8);
+}
+
+.project-card:hover {
+  transform: translateY(-0.5rem) scale(1.03);
+  box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+.project-card:hover h4 {
+  opacity: 1;
+  color: #ffffff;
+  background: linear-gradient(-45deg, #ff512f, #dd2476, #24c6dc, #514a9d);
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
+}
+
+@media (max-width: 1024px) {
+  .projects-rows {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card img {
+    height: 11.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-rows {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card img {
+    height: 10rem;
+  }
 }
 
 @media (max-width: 480px) {
   .profile-pic {
-    width: 120px;
+    width: 7.5rem;
   }
 
   h1 {
     font-size: 1.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
 
   h2 {
@@ -261,8 +366,8 @@ h3::after {
   }
 
   .down-arrow {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .next-section {
@@ -274,11 +379,15 @@ h3::after {
     line-height: 1.6;
     text-align: left;
   }
+
+  .project-card img {
+    height: 8.75rem;
+  }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 1200px) {
   .profile-pic {
-    width: 140px;
+    width: 8.75rem;
   }
 
   h1 {
@@ -294,8 +403,8 @@ h3::after {
   }
 
   .down-arrow {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
   }
 
   .next-section {
@@ -305,7 +414,7 @@ h3::after {
 
 @media (min-width: 1200px) {
   .profile-pic {
-    width: 200px;
+    width: 12.5rem;
   }
 
   h1 {
@@ -321,8 +430,8 @@ h3::after {
   }
 
   .down-arrow {
-    width: 70px;
-    height: 70px;
+    width: 4.375rem;
+    height: 4.375rem;
   }
 
   .next-section p {

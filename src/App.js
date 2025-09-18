@@ -89,12 +89,14 @@ function App() {
       >
         <img
           src="/images/alex_goater.jpeg?v=1"
-          alt="Alex Goater profile picture"
+          alt="Alex Goater"
           className="profile-pic"
         />
         <h1>- Alex Goater -</h1>
         <h2>
-          <span ref={typedRef}></span>
+          <span ref={typedRef} aria-live="polite">
+            Full Stack Developer
+          </span>
         </h2>
         <div className="arrow-wrapper" onClick={scrollToNextSection}>
           <ArrowDown className="down-arrow" />

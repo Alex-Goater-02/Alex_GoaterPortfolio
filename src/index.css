@@ -12,7 +12,18 @@ body {
   background: linear-gradient(-45deg, #ff512f, #dd2476, #24c6dc, #514a9d);
   background-size: 400% 400%;
   animation: gradient 12s ease infinite;
+  position: relative;
+  z-index: 0;
 }
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
 
 @keyframes gradient {
   0% {
@@ -247,7 +258,6 @@ h3::after {
 }
 
 .projects-section {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -327,6 +337,73 @@ h3::after {
   animation: gradient 6s ease infinite;
 }
 
+.footer {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 1.5rem 1rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.03rem;
+  line-height: 1.4;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-name {
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-name:hover {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255, 77, 109, 0.5);
+  cursor: pointer;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.social-links a img {
+  width: 1.4rem;
+  height: 1.4rem;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-links a:hover img {
+  transform: scale(1.15);
+  filter: brightness(0) invert(1) drop-shadow(0 0 0.25rem #fff);
+}
+
 @media (max-width: 1024px) {
   .projects-rows {
     grid-template-columns: repeat(2, 1fr);
@@ -382,6 +459,15 @@ h3::after {
 
   .project-card img {
     height: 8.75rem;
+  }
+
+  .footer-content {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .social-links {
+    gap: 1rem;
   }
 }
 

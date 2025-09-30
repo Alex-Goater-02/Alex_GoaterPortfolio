@@ -177,6 +177,8 @@ function App() {
                 "SQL",
                 "Git/GitHub",
                 "SEO",
+                "Tailwind CSS",
+                "Bootstrap",
               ].map((skill, index) => (
                 <motion.div
                   key={skill}
@@ -240,6 +242,37 @@ function App() {
           </div>
         </div>
       </section>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <p>
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="footer-name">Alex Goater</span>. All Rights
+            Reserved.
+          </p>
+          <div className="social-links">
+            <a
+              href="https://github.com/Alex-Goater-02"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+            >
+              <img src="/images/github.svg" alt="GitHub" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alex-goater-433933232/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+            >
+              <img src="/images/linkedin.svg" alt="LinkedIn" />
+            </a>
+            <a href="mailto:alex.goater@outlook.com" aria-label="Send Email">
+              <img src="/images/email.svg" alt="Email" />
+            </a>
+          </div>
+        </div>
+      </footer>
     </motion.div>
   );
 }
